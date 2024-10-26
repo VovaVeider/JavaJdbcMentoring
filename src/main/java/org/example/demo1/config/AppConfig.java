@@ -1,9 +1,5 @@
 package org.example.demo1.config;
 
-import org.example.demo1.utils.ConnectionManager;
-
-import java.sql.DriverManager;
-
 public final class AppConfig {
     private static final String dbUrl = "jdbc:postgresql://localhost:5432/library_db";
     private static final String dbLogin = "admin";
@@ -17,3 +13,4 @@ public final class AppConfig {
         return cm;
     }
 }
+
