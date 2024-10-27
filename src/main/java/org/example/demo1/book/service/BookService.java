@@ -19,7 +19,7 @@ public class BookService {
 
     public List<Book> getAllBooks() {
         try {
-            databaseManager.openConnection();
+            databaseManager.openConnection(true);
             return bookRepository.getAll();
         } finally {
             databaseManager.closeConnection();
@@ -28,7 +28,7 @@ public class BookService {
 
     public List<Book> findBooksByTitle(String title) {
         try {
-            databaseManager.openConnection();
+            databaseManager.openConnection(true);
             return bookRepository.findByTitle(title);
         } finally {
             databaseManager.closeConnection();
@@ -42,11 +42,16 @@ public class BookService {
         else if (title == null || title.isBlank())
             throw new ServiceException("Title cannot be blank");
         try {
-            databaseManager.openConnection();
+            databaseManager.openConnection(false);
             if (bookRepository.existsByIsbn(isbn))
                 throw new ServiceException("ISBN already exists");
             bookRepository.save(new Book(isbn, title, author, publishedDate));
-        } finally {
+            databaseManager.commitCurrentConnection();
+        } catch (Exception e) {
+            databaseManager.rollbackCurrentConnection();
+            throw new ServiceException(e);
+        }
+        finally {
             //В любом случае соединение закроется
             databaseManager.closeConnection();
         }
@@ -54,7 +59,7 @@ public class BookService {
 
     public boolean deleteBook(int id) {
         try {
-            databaseManager.openConnection();
+            databaseManager.openConnection(true);
             return bookRepository.deleteById(id);
         } finally {
             databaseManager.closeConnection();

@@ -63,7 +63,7 @@ public class BookManagementConsoleUI {
             if (dateStr.isEmpty())
                 date = null;
             else
-                date = LocalDate.parse(sc.nextLine().trim());
+                date = LocalDate.parse(dateStr);
         } catch (DateTimeParseException e) {
             println("Not a valid date");
             return;

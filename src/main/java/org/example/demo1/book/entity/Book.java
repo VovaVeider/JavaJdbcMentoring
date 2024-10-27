@@ -38,6 +38,11 @@ public class Book {
         this.isbn = isbn;
     }
 
+    @Override
+    public String toString() {
+        return "ID=%s ISBN=%s TITLE=%s AUTHOR=%s PUBLISHED_DATE=%s"
+                .formatted(id, isbn, title, author, publishedDate);
+    }
     public Integer getId() {
         return id;
     }

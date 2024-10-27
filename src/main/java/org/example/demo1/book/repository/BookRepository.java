@@ -17,13 +17,13 @@ public class BookRepository {
     private static final String SAVE_BOOK_SQL = """
             INSERT INTO BOOKS(isbn, title, author, published_date)
                                 VALUES(?, ?, ?, ?)
-                                RETURNING id""";
+                    RETURNING ID""";
     private static final String EXISTS_BY_ISBN_SQL = "SELECT 1 FROM BOOKS WHERE isbn = ?";
     private static final String FIND_BY_TITLE_SQL = """
             SELECT id,isbn, title, author, published_date
             FROM BOOKS WHERE title = ?""";
     private static final String DELETE_BY_ID_SQL = "DELETE FROM BOOKS WHERE id = ?";
-
+    private static final String GET_ALL_BOOKS_SQL = "SELECT id, isbn, title, author, published_date from BOOKS";
     public BookRepository(DatabaseManager dbM) {
         this.dbM = dbM;
     }
@@ -35,7 +35,6 @@ public class BookRepository {
             stmt.setString(2, book.getTitle());
             stmt.setString(3, book.getAuthor());
             stmt.setDate(4, book.getPublishedDate() == null ? null : Date.valueOf(book.getPublishedDate()));
-            stmt.executeUpdate();
             int insertedRow = stmt.executeUpdate();
             if (insertedRow > 0) {
                 try (var generatedKeys = stmt.getGeneratedKeys()) {
@@ -83,7 +82,7 @@ public class BookRepository {
     public List<Book> getAll() {
         List<Book> books = new ArrayList<>();
         var conn = dbM.getConnection();
-        try (var stmt = conn.prepareStatement(FIND_BY_TITLE_SQL)) {
+        try (var stmt = conn.prepareStatement(GET_ALL_BOOKS_SQL)) {
             stmt.executeQuery();
             try (var rs = stmt.getResultSet()) {
                 while (rs.next()) {

@@ -19,10 +19,11 @@ public class DatabaseManager {
         this.password = password;
     }
 
-    public void openConnection() {
+    public void openConnection(boolean autoCommit){
         if (!isOpenConnection())
             try {
                 connection = DriverManager.getConnection(url, login, password);
+                connection.setAutoCommit(autoCommit);
             } catch (SQLException e) {
                 throw new DatabaseManagerException(e);
             }
@@ -56,6 +57,26 @@ public class DatabaseManager {
             return false;
         }
         return true;
+    }
+
+    public void commitCurrentConnection() {
+        if (!isOpenConnection())
+            throw new DatabaseManagerException("Ошибка, нет открытого подключения.");
+        try {
+            connection.commit();
+        } catch (SQLException e) {
+            throw new DatabaseManagerException(e);
+        }
+    }
+
+    public void rollbackCurrentConnection() {
+        if (!isOpenConnection())
+            throw new DatabaseManagerException("Ошибка, нет открытого подключения.");
+        try {
+            connection.rollback();
+        } catch (SQLException e) {
+            throw new DatabaseManagerException(e);
+        }
     }
 
 

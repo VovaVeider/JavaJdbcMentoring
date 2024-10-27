@@ -31,21 +31,37 @@ public class MainMenuConsoleUI {
                 println("Please enter a valid option!");
                 continue;
             }
-            switch (choice) {
-                case 0:
-                    break l1;
-                case 1:
-                    bookManagementConsoleUI.getAllBooks();
-                case 2:
-                    bookManagementConsoleUI.findBooksByTitle();
-                case 3:
-                    bookManagementConsoleUI.addBook();
-                case 4:
-                    bookManagementConsoleUI.deleteBook();
-                default:
-                    println("Please enter a valid option!");
+            try {
+                switch (choice) {
+                    case 0:
+                        break l1;
+                    case 1:
+                        bookManagementConsoleUI.getAllBooks();
+                        break;
+                    case 2:
+                        bookManagementConsoleUI.findBooksByTitle();
+                        break;
+                    case 3:
+                        bookManagementConsoleUI.addBook();
+                        break;
+                    case 4:
+                        bookManagementConsoleUI.deleteBook();
+                        break;
+                    default:
+                        println("Please enter a valid option!");
+                }
+
+
+            } catch (Exception e) {
+                printError(e);
             }
 
+            println("=".repeat(10));
         }
+
+    }
+
+    private void printError(Exception e) {
+        println("Error was occured: " + e.getMessage());
     }
 }
