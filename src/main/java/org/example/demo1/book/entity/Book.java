@@ -1,14 +1,17 @@
-package org.example.demo1.entity;
+package org.example.demo1.book.entity;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Book {
-    private  Integer id;
+    private Integer id;
     private String title;
     private String author;
     private LocalDate publishedDate;
     private String isbn;
+
+    public Book() {
+
+    }
 
     public Book(String title, String isbn) {
         this.title = title;
@@ -16,12 +19,19 @@ public class Book {
     }
 
     public Book(String title, String isbn, String author) {
-        this(title,isbn);
+        this(title, isbn);
         this.author = author;
     }
 
     public Book(Integer id, String isbn, String title, String author, LocalDate publishedDate) {
         this.id = id;
+        this.title = title;
+        this.author = author;
+        this.publishedDate = publishedDate;
+        this.isbn = isbn;
+    }
+
+    public Book(String isbn, String title, String author, LocalDate publishedDate) {
         this.title = title;
         this.author = author;
         this.publishedDate = publishedDate;

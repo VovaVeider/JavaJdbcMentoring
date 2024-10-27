@@ -1,4 +1,4 @@
-package org.example.demo1.entity;
+package org.example.demo1.reader.entity;
 
 public class Reader {
     private Integer id;
