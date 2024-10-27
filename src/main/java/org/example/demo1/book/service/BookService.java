@@ -48,10 +48,10 @@ public class BookService {
             bookRepository.save(new Book(isbn, title, author, publishedDate));
             databaseManager.commitCurrentConnection();
         } catch (Exception e) {
-            databaseManager.rollbackCurrentConnection();
+            if (databaseManager.isOpenConnection())
+                databaseManager.rollbackCurrentConnection();
             throw new ServiceException(e);
-        }
-        finally {
+        } finally {
             //В любом случае соединение закроется
             databaseManager.closeConnection();
         }
