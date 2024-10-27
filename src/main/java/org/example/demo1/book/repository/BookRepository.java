@@ -1,7 +1,7 @@
 package org.example.demo1.book.repository;
 
 import org.example.demo1.book.entity.Book;
-import org.example.demo1.exeptions.RepositoryException;
+import org.example.demo1.exceptions.RepositoryException;
 import org.example.demo1.utils.DatabaseManager;
 
 import java.sql.Date;

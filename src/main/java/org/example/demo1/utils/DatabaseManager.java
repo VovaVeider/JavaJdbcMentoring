@@ -1,7 +1,7 @@
 package org.example.demo1.utils;
 
 
-import org.example.demo1.exeptions.DatabaseManagerException;
+import org.example.demo1.exceptions.DatabaseManagerException;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

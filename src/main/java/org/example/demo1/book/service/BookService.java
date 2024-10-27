@@ -2,7 +2,7 @@ package org.example.demo1.book.service;
 
 import org.example.demo1.book.entity.Book;
 import org.example.demo1.book.repository.BookRepository;
-import org.example.demo1.exeptions.ServiceException;
+import org.example.demo1.exceptions.ServiceException;
 import org.example.demo1.utils.DatabaseManager;
 
 import java.time.LocalDate;

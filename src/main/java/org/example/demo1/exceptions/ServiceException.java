@@ -1,4 +1,4 @@
-package org.example.demo1.exeptions;
+package org.example.demo1.exceptions;
 
 public class ServiceException extends RuntimeException {
     public ServiceException() {super();}

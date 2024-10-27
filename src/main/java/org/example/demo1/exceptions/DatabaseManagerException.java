@@ -1,4 +1,4 @@
-package org.example.demo1.exeptions;
+package org.example.demo1.exceptions;
 
 public class DatabaseManagerException extends RuntimeException{
     public DatabaseManagerException(){super();}
