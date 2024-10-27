@@ -1,5 +1,7 @@
 package org.example.demo1.ui.console;
 
+import org.example.demo1.utils.PrintUtils;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -7,9 +9,10 @@ import static org.example.demo1.utils.PrintUtils.println;
 
 public class MainMenuConsoleUI {
     private final BookManagementConsoleUI bookManagementConsoleUI;
-
-    public MainMenuConsoleUI(BookManagementConsoleUI bookManagementConsoleUI) {
+    private final ReaderManagementConsoleUI readerManagementConsoleUI;
+    public MainMenuConsoleUI(BookManagementConsoleUI bookManagementConsoleUI, ReaderManagementConsoleUI readerManagementConsoleUI) {
         this.bookManagementConsoleUI = bookManagementConsoleUI;
+        this.readerManagementConsoleUI= readerManagementConsoleUI;
     }
 
     public void run() {

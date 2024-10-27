@@ -19,7 +19,7 @@ public class DatabaseManager {
         this.password = password;
     }
 
-    public void openConnection(boolean autoCommit){
+    public void openConnection(boolean autoCommit) {
         if (!isOpenConnection())
             try {
                 connection = DriverManager.getConnection(url, login, password);
@@ -28,6 +28,7 @@ public class DatabaseManager {
                 throw new DatabaseManagerException(e);
             }
     }
+
 
     public Connection getConnection() {
         if (!isOpenConnection())
